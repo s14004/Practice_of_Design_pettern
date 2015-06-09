@@ -1,12 +1,17 @@
 package jp.ac.it_college.std.s14004.pdp;
 
 import com.sun.deploy.pings.Pings;
+import com.sun.deploy.uitoolkit.ui.AbstractDialog;
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader;
+import javafx.scene.text.TextBuilder;
+import jp.ac.it_college.std.s14004.pdp.builder.Director;
+import jp.ac.it_college.std.s14004.pdp.builder.HTMLBuilder;
+import jp.ac.it_college.std.s14004.pdp.singleton.Singleton;
 
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        hashSetTest();
     }
 
     //       Print p = new PrintBanner("Hello");
@@ -171,6 +176,9 @@ public class Main {
         }
     }
 
+    public static void prototypeMain() {
+    }
+
     public static void hashSetTest() {
         Set<String> set = new HashSet<>();
 
@@ -221,6 +229,32 @@ public class Main {
         System.out.println();
 
         System.out.println("Bobの値" + map.get("Bob"));
+    }
+
+    public static void templateTest() {
+
+    }
+
+    public static void singletonMain() {
+        System.out.println("Start");
+        Singleton obj1 = Singleton.getInstance();
+        Singleton obj2 = Singleton.getInstance();
+
+        if (obj1 == obj2) {
+            System.out.println("obj1とobj2は同じインスタンスです。");
+        } else {
+            System.out.println("obj1とonj2は同じインスタンスではありません。");
+        }
+        System.out.println("End.");
+    }
+
+    public static void builderMain(String[] args) {
+        if (args.length != 1) {
+            System.exit(0);
+        }
+        if (args[0].equals("plain")) {
+
+        }
     }
 
 }
