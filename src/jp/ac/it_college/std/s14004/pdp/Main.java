@@ -1,22 +1,70 @@
 package jp.ac.it_college.std.s14004.pdp;
 
-import com.sun.deploy.pings.Pings;
-import com.sun.deploy.uitoolkit.ui.AbstractDialog;
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader;
-import javafx.scene.text.TextBuilder;
-import jp.ac.it_college.std.s14004.pdp.builder.Director;
-import jp.ac.it_college.std.s14004.pdp.builder.HTMLBuilder;
+import jp.ac.it_college.std.s14004.pdp.bridge.CountDisplay;
+import jp.ac.it_college.std.s14004.pdp.bridge.Display;
+import jp.ac.it_college.std.s14004.pdp.bridge.StringDisplayImpl;
 import jp.ac.it_college.std.s14004.pdp.singleton.Singleton;
-
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+        strategyMain(new String[] {"314", "15",});
     }
 
-    //       Print p = new PrintBanner("Hello");
-    //      p.printWeek();
-    //    p.printStrong();
+    private static void strategyMain(String[] args) {
+        if (args.length != 2) {
+            System.out.println("Usage: java Main randomseed1 randomseed2");
+            System.out.println("Example: java Main 314 15");
+            System.exit(0);
+        }
+
+        int seed1 = Integer.parseInt(args[0]);
+        int seed2 = Integer.parseInt(args[1]);
+        Player player1 = new Player("Taro", new WinningStrategy(seed1));
+        Player player2 = new Player("Hana", new ProbStrategy(seed2));
+
+        for (int i = 0; i < 10000; i++) {
+            Hand nextHand1 = player1.nextHand();
+            Hand nextHand2 = player2.nextHand();
+            if (nextHand1.isStrongerThan(nextHand2)) {
+                System.out.println("Winner:" + player1);
+                player1.win();
+                player2.lose();
+            } else if (nextHand2.isStrongerThan(nextHand1)) {
+                System.out.println("Winner:" + player2);
+                player1.lose();
+                player2.win();
+            } else {
+                System.out.println("Even...");
+                player1.even();
+                player2.even();
+            }
+        }
+        System.out.println("Total result:");
+        System.out.println(player1.toString());
+        System.out.println(player2.toString());
+    }
+
+    private static void bridgeMain() {
+        Display d1 = new Display(new StringDisplayImpl("Hello, japan."));
+        Display d2 = new CountDisplay(new StringDisplayImpl("Hello, World."));
+        CountDisplay d3 = new CountDisplay(new StringDisplayImpl("Hello, Universe."));
+
+        d1.display();
+        d2.display();
+        d3.display();
+        d3.multiDisplay(5);
+    }
+
+    private static void abstractMain(String[] args) {
+        if (args.length != 1) {
+            System.out.println("Usage: java Main class.name.of.ConcreteFactory");
+            System.out.println("Example 1: java Main listfactory.ListFactory");
+            System.out.println("Example 2: java Main tablefactory.TableFactory");
+            System.exit(0);
+        }
+    }
+
     public static void arrayListTest1() {
         ArrayList<String> list = new ArrayList<>();
 
