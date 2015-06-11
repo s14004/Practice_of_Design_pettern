@@ -7,10 +7,5 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="singleton" />
-    <orderEntry type="module" module-name="builder" />
-    <orderEntry type="module" module-name="bridge" />
-    <orderEntry type="module" module-name="decorator" />
-    <orderEntry type="module" module-name="visitor" />
   </component>
 </module>
