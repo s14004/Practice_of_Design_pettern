@@ -7,7 +7,6 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        jp.ac.it_college.std.s14004.pdp.visitor.Main.main(args);
     }
 
     private static void compositeMain() {
